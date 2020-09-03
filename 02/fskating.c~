@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void){
+    double s1, s2, s3, average;
+
+    printf("Judges' First Score:");
+    scanf("%lg", &s1);
+    printf("\nJudges' Second Score:");
+    scanf("%lg", &s2);
+    printf("\nJudges' Third Score:");
+    scanf("%lg", &s3);
+
+    if(s1 < s2 && s1 < s3){
+        average = (s2 + s3)/2;
+        printf("The Average Score: %f", average);
+        
+    }else if(s2 < s1 && s2 < s3){
+        average = (s1 + s3)/2;
+        printf("The Average Score: %f", average);
+        
+    }else{        
+        average = (s1 + s2)/2
+        printf("The Average Score: %f", average);
+    }
+
+    return EXIT_SUCCESS;
+}

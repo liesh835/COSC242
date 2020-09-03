@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+/**
+ * Selection Sort.
+ * @author Shaun Liew.
+ */
+
+/** defines array capacity. */
+
+#define ARRAY_MAX 41981
+
+/**
+ * Method for sorting integers in the array through insertion.
+ * @param a* the array to sort, n the size of the array.
+ */
+
+struct ocean_datum{
+    int x, y;
+    double conc;
+};
+
+void print_ocean_datum(struct ocean_datum *o){
+    printf("%d%d%.4f\n", o->x, o->y, o->conc);
+}
+
+int read_ocean_datum(struct ocean_datum *o){
+    return 3 == scanf("%d %d %lg", &o->x, &o->y, &o->conc);
+}
+
+void selection_sort(struct ocean_datum **a, int n){
+    int p, i, smallInd;
+    struct ocean_datum *temp;
+
+    for(p = 0; p < n - 1; p++){
+        smallInd = p;
+        
+        for(i = p + 1; i <= n - 1; i++){
+            if(strcmp(a[i], a[smallInd]) < 0){
+                smallInd = i;
+            }
+        }
+
+        temp = a[p];
+        a[p] = a[smallInd];
+        a[smallInd] = temp;
+    }
+}
+
+
+int main(void){
+    struct ocean_datum ocean_data[ARRAY_MAX];
+    int num_items, i;
+    num_items = 0;
+    
+    while (num_items < ARRAY_MAX && read_ocean_datum(&ocean_data[num_items])){
+        num_items++;
+    }
+
+    selection_sort(ocean_data, num_items);
+
+    for(i = 0; i < num_items; i++){
+        print_ocean_datum(&ocean_data[i]);
+    }
+    
+    return EXIT_SUCCESS;
+}

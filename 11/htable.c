@@ -1,0 +1,92 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "htable.h"
+//#include "mylib.c"
+struct htablerec{
+    int capacity;
+    int num_keys;
+    int *frequencies;
+    char **keys;
+};
+
+htable htable_new(int capacity){
+    int i;
+    
+    htable h = emalloc(sizeof *h);
+    h->capacity = capacity;
+    h->num_keys = 0;
+    h->frequencies = emalloc(h->frequencies, h->capacity * sizeof h->frequencies[0]);
+    h->keys = emalloc(h->keys, h->capacity * sizeof h->keys[0]);
+
+    for(i = 0; i < capacity; i++){
+        h->frequencies[i] = 0;
+        h->keys[i] = NULL;
+    }
+    return h;
+}
+
+static unsigned int htable_word_to_int(char *word){
+    unsigned int result = 0;
+
+    while(*word != '\0'){
+        result = (*word++ + 31 * result);
+    }
+    
+    return result;
+}
+
+static unsigned int htable_step(htable h, unsigned int i_key) {
+    return 1 + (i_key % (h->capacity - 1));
+}
+
+int htable_insert(htable h, char *str){
+    int i = 0;
+    unsigned int in = htable_word_to_int(str);
+    in = (in % h->capacity);
+    step = htable_step(h, in);
+     
+    while(1){
+         
+        if(h->keys[in] == NULL){
+            h->keys[in] = erealloc(h->keys, f->capacity * sizeof f->keys[0]);
+            strcpy(h->keys[in], str);
+            h->frequencies[in] = 1;
+            h->num_keys++;
+            return 1;
+        }    
+        if(strcmp(h->keys[in], str) == 0){
+            h->frequencies[in]++;
+            return h->frequencies;
+        }else if(i == h->capacity){
+            return 0;
+        }
+
+        in = ((in + step) % h->capacity);
+        i++;
+    }
+}
+
+void htable_print(htable h, FILE *stream){
+    int i;
+    for(i = 0; i < h->capacity; i++){
+        if(h->keys[i] != NULL){
+            fprintf(stream, "%s", h->keys[i]);
+}
+
+
+int htable_search(htable h, char *str){
+    
+}
+
+
+void htable_free(htable h){
+    int i;
+
+    for(i = 0;i < capacity; i++){
+        free(h->keys[i]);
+    }
+    
+    free(h->keys);
+    free(h->frequencies);
+    free(h);
+}

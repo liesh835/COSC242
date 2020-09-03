@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+/**
+ * Insertion Sort.
+ * @author Shaun Liew.
+ */
+
+/** defines array capacity. */
+
+#define ARRAY_MAX 10000
+
+/**
+ * Method for sorting integers in the array through insertion.
+ * @param a* the array to sort, n the size of the array.
+ */
+
+void selection_sort(char *a, int n){
+    int p, i, smallInd;
+    char *temp;
+
+    for(p = 0; p < n - 1; p++){
+        smallInd = p;
+        
+        for(i = p + 1; i <= n - 1; i++){
+            if(strcmp(a[i], a[smallInd]) < 0){
+                smallInd = i;
+            }
+        }
+
+        temp = a[p];
+        a[p] = a[smallInd];
+        a[smallInd] = temp;
+    }
+}
+
+void *emalloc(size_t s){
+    void *result = malloc(s);
+    if (NULL == result){
+        fprintf(stderr, "Memory allocation failed\n");
+        exit(EXIT_FAILURE);
+    }
+    return result;
+}
+
+int main(void){   
+    return EXIT_SUCCESS;
+}

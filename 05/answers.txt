@@ -1,0 +1,9 @@
+a) easier to reach/understand - encapsulation, less error prone
+b) char
+c) to leave a space for termination of array (\0)
+d) yes as chars are pointers and have been memory allocated.
+e) length of string is 79 (including terminating element)
+f) wordlist[0][2] (do\0)
+wordlist[1][4] (cats\0)
+wordlist[2][3] (eat\0)
+wordlist[3][4] (bats\0)
